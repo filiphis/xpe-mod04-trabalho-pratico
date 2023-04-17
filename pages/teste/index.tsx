@@ -1,17 +1,22 @@
 import ProductList from "@/components/ProductList";
-import { ProductProps } from "@/components/Product";
 import Title from "@/components/Title";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+
+export type ProductProps = {
+  id: number;
+  title: string;
+  description: string;
+  price: string;
+};
 
 export type ProductsProps = {
   products: ProductProps[];
 };
 
 async function getProducts() {
-  const res = await axios.get("https://fakestoreapi.com/products?limit=15");
+  const res = await axios.get("https://fakestoreapi.com/products?limit=10");
   const products = res.data;
-
   return products;
 }
 
@@ -21,14 +26,11 @@ export async function getStaticProps() {
   return { props: { products } };
 }
 
-// export async function getStaticPaths() {}
-
 export default function Products({ products: initialProducts }: ProductsProps) {
   const { data: products } = useQuery({
     queryKey: ["products"],
     queryFn: getProducts,
     initialData: initialProducts,
-    staleTime: 1000 * 60,
   });
 
   return (

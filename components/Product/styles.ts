@@ -4,7 +4,7 @@ const Wrapper = styled.div`
   width: 200px;
   padding: 18px 8px;
   margin: 16px;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
@@ -14,4 +14,8 @@ const Wrapper = styled.div`
   text-align: center;
 `;
 
-export { Wrapper };
+const InlineBlock = styled.div`
+  display: inline-block;
+`;
+
+export { Wrapper, InlineBlock };
